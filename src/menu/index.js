@@ -1,4 +1,4 @@
-import articleManage from "./articleManage.js";
+import sysHistory from "./sysHistory.js";
 
 /**
  * 首页
@@ -13,6 +13,6 @@ let home = {
 
 export default {
   home,
-  articleManage
+  sysHistory
   //helpCenter
 };

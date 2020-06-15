@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { topics } from "@/api/articleManage/list";
+import { topics } from "@/api/sys/history";
 import { exportCvsTable } from "@/utils/cvs";
 import { resetObject } from "@/utils/common";
 import Edit from "./Edit.vue";

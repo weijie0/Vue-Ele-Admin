@@ -15,7 +15,7 @@ export default {
         title: "历史事件"
       },
       component: resolve =>
-        require(["@/views/articleManage/articleList/Index.vue"], resolve)
+        require(["@/views/sys/history/Index.vue"], resolve)
     }
   ]
 };
