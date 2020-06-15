@@ -76,7 +76,9 @@ export default {
           });
         });
     },
-    logout() {}
+    logout() {
+      this.$router.push({ path: "/login" });
+    }
   },
   computed: mapState(["system"])
 };
