@@ -1,18 +1,18 @@
 import Layout from "@/views/layout/App.vue";
 export default {
-  path: "/article_manage",
+  path: "/sys",
   component: Layout,
-  name: "ArticleManage",
-  redirect: "/article_manage/list",
+  name: "History",
+  redirect: "/sys/history",
   meta: {
-    title: "文章管理"
+    title: "系统管理"
   },
   children: [
     {
-      path: "list",
-      name: "ArticleManageList",
+      path: "history",
+      name: "history",
       meta: {
-        title: "文章列表"
+        title: "历史事件"
       },
       component: resolve =>
         require(["@/views/articleManage/articleList/Index.vue"], resolve)

@@ -7,5 +7,5 @@ export default {
   tokenKey: "ACCESS_TOKEN",
   userInfoKey: "USER_INFO",
   permissionsKey: "PERMISSION_ARRAY",
-  pageSizesArr: [14, 32, 64]
+  pageSizesArr: [10, 20, 30]
 };

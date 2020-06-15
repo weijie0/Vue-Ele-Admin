@@ -3,8 +3,8 @@ module.exports = {
 
   devServer: {
     proxy: {
-      "/api": {
-        target: "https://baidu.com",
+      "/v3": {
+        target: "https://api.spacexdata.com",
         changeOrigin: true
       }
     }

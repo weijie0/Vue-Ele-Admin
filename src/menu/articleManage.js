@@ -1,17 +1,17 @@
 export default {
-  name: "文章管理",
+  name: "系统管理",
   permissionsKey: "",
   icon: "fa fa-envelope-open",
   children: {
     courseCardList: {
-      name: "文章列表",
+      name: "历史事件",
       permissionsKey: "",
-      path: "/article_manage/list"
+      path: "/sys/history"
     },
     organCardList: {
-      name: "文章分类",
+      name: "接口信息",
       permissionsKey: "",
-      path: "/articleManage/category"
+      path: "/sys/info"
     }
   }
 };

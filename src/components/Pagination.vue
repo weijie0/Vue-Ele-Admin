@@ -56,7 +56,7 @@ export default {
         return;
       }
       let p = this.filterParams({ ...this.params, ...this.pageParams });
-      this.requestFunc(p)
+      this.requestFunc(this.convertPageReq(p))
         .then(result => {
           let r = result;
           if (this.paginationField) {
@@ -73,6 +73,12 @@ export default {
     },
     GetAllParam() {
       return { ...this.params, ...this.pageParams };
+    },
+    convertPageReq(target) {
+        return {
+          limit:target.pageSize,
+          offset:target.pageNum
+        }
     }
   },
   mounted: function() {

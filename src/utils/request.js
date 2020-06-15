@@ -44,7 +44,7 @@ service.interceptors.response.use(
       if (res.config.closeInterceptors) {
         return res.data;
       }
-      if (!res.data.success) {
+      if (!res.data) {
         //removeToken(); //登陆失效执行
         Notification({
           title: "数据返回出错",
@@ -53,7 +53,10 @@ service.interceptors.response.use(
         });
         return Promise.reject("error");
       }
-      return res.data.data;
+      if(res.headers['spacex-api-count']) {
+        res.data.total = res.headers['spacex-api-count']
+      }
+      return res.data;
     }
   },
   error => {

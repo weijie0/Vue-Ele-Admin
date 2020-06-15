@@ -5,5 +5,5 @@ export default {
   ...CommonConfig,
   ...SystemConfig,
   corporation: "公司名教育科技（北京）有限公司",
-  siteName: "Vue-Ele-Admin管理后台"
+  siteName: "SpaceX管理后台"
 };

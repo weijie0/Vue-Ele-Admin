@@ -2,14 +2,6 @@
   <div>
     <ToolBar>
       <div>
-        <el-button type="primary" size="small" @click="showEditDialog = true"
-          >编辑添加，字段各种规则验证示例</el-button
-        >
-        <el-button type="primary" size="small" @click="exportTable"
-          >本地导出表格</el-button
-        >
-      </div>
-      <div>
         <el-input
           placeholder="请输入文章标题"
           size="small"
@@ -36,31 +28,31 @@
       </div>
     </ToolBar>
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="title" label="文章标题"> </el-table-column>
-      <el-table-column prop="" label="作者">
-        <template slot-scope="s">
-          {{ s.row.author.loginname }}
+      <el-table-column prop="title" label="标题"> </el-table-column>
+      <el-table-column prop="details" label="详情"></el-table-column>
+      <el-table-column prop="flight_number" label="航次"></el-table-column>
+      <el-table-column label="访问链接" width="400" show-overflow-tooltip>
+        <template slot-scope="scope">
+          <a :href="scope.row.links.article" target="_blank" class="buttonText">{{scope.row.links.article}}</a>
         </template>
       </el-table-column>
-      <el-table-column prop="visit_count" label="浏览量"></el-table-column>
-      <el-table-column prop="reply_count" label="回复"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="240">
-        <div slot-scope="s">
-          <el-button type="primary" size="small" @click="routeDemo(s.row)"
-            >多层级路由面包屑示例</el-button
-          >
-          <el-button type="danger" size="small" @click="removeItem(s.row)"
-            >删除</el-button
+      <el-table-column prop="event_date_utc" label="时间"></el-table-column>
+      <el-table-column fixed="right"   label="操作">
+        <div slot-scope="scope" >
+          <el-button type="primary" size="small" @click="routeDemo(scope.row)"
+            ><i class="el-icon-edit"></i><span>
+            查看
+          </span></el-button
           >
         </div>
       </el-table-column>
     </el-table>
-    <!--    <Pagination-->
-    <!--      :params="searchParams"-->
-    <!--      :requestFunc="requestFunc"-->
-    <!--      ref="pagination"-->
-    <!--      @returnData="returnData"-->
-    <!--    />-->
+       <Pagination
+         :params="searchParams"
+         :requestFunc="requestFunc"
+         ref="pagination"
+         @returnData="returnData"
+       />
     <Edit :showEditDialog="showEditDialog" @close="showEditDialog = false" />
   </div>
 </template>
@@ -81,14 +73,17 @@ export default {
       tableData: []
     };
   },
-  created() {
-    topics()
-      .then(r => {
-        this.tableData = r;
-      })
-      .catch(() => {});
-  },
+  // created() {
+  //   topics()
+  //     .then(r => {
+  //       this.tableData = r;
+  //     })
+  //     .catch(() => {});
+  // },
   methods: {
+    requestFunc(param) {
+      return topics(param);
+    },
     routeDemo() {
       this.$message.info("待添加");
     },
@@ -103,34 +98,14 @@ export default {
       );
     },
     refresh() {
-      //this.$refs.pagination.Refresh(); //分页刷新
+      this.$refs.pagination.Refresh(); //分页刷新
     },
     returnData(pageList) {
-      this.tableData = pageList.list;
+      this.tableData = pageList;
     },
     clearSearchParams() {
       resetObject(this.searchParams);
       this.refresh();
-    },
-    removeItem(row) {
-      this.$confirm("确定删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          row.d = 0;
-          // updateStatus({ id: row.id})
-          //   .then(r => {
-          //     this.$message({
-          //       type: "success",
-          //       message: "操作成功!"
-          //     });
-          //     this.refresh();
-          //   })
-          //   .catch(() => {});
-        })
-        .catch(() => {});
     }
   },
   components: { Edit }
