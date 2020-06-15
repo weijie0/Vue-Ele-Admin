@@ -14,7 +14,10 @@ service.defaults.retryDelay = Config.requestRetryDelay;
 service.interceptors.request.use(
   config => {
     if (!config.closeLoading) {
-      window.loadingInstance = Loading.service();
+      window.loadingInstance = Loading.service({
+        text: '拼命加载中...',
+        target: document.querySelector('div.content')
+      });;
     }
     config.headers["Authorization"] = getToken();
     return config;
