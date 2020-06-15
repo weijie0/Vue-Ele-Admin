@@ -15,9 +15,10 @@ service.interceptors.request.use(
   config => {
     if (!config.closeLoading) {
       window.loadingInstance = Loading.service({
-        text: '拼命加载中...',
-        target: document.querySelector('div.content')
-      });;
+        text: "拼命加载中...",
+        // background: "rgba(0,0,0,0.7)",
+        target: document.querySelector("div.content")
+      });
     }
     config.headers["Authorization"] = getToken();
     return config;
