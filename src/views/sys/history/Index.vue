@@ -9,16 +9,7 @@
           v-model="searchParams.title"
           clearable
         ></el-input>
-        <el-select
-          v-model="searchParams.type"
-          clearable
-          style="width: 140px"
-          placeholder="请选择类型"
-          size="small"
-        >
-          <el-option label="招聘信息" value="1"></el-option>
-          <el-option label="技术交流" value="2"></el-option>
-        </el-select>
+
         <el-button type="success" size="small" @click="refresh()"
           >查询</el-button
         >
@@ -38,8 +29,8 @@
       </el-table-column>
       <el-table-column prop="event_date_utc" label="时间"></el-table-column>
       <el-table-column fixed="right"   label="操作">
-        <div slot-scope="scope" >
-          <el-button type="primary" size="small" @click="routeDemo(scope.row)"
+        <div  slot-scope="scope">
+          <el-button type="primary" size="small" @click="editDialog(scope.row.id)"
             ><i class="el-icon-edit"></i><span>
             查看
           </span></el-button
@@ -53,12 +44,12 @@
          ref="pagination"
          @returnData="returnData"
        />
-    <Edit :showEditDialog="showEditDialog" @close="showEditDialog = false" />
+    <Edit :item="item" :showEditDialog="showEditDialog" @close="showEditDialog = false" />
   </div>
 </template>
 
 <script>
-import { topics } from "@/api/sys/history";
+import { history, getHistoryById } from "@/api/sys/history";
 import { exportCvsTable } from "@/utils/cvs";
 import { resetObject } from "@/utils/common";
 import Edit from "./Edit.vue";
@@ -70,19 +61,13 @@ export default {
         type: ""
       },
       showEditDialog: false,
-      tableData: []
+      tableData: [],
+      item:{}
     };
   },
-  // created() {
-  //   topics()
-  //     .then(r => {
-  //       this.tableData = r;
-  //     })
-  //     .catch(() => {});
-  // },
   methods: {
     requestFunc(param) {
-      return topics(param);
+      return history(param);
     },
     routeDemo() {
       this.$message.info("待添加");
@@ -106,6 +91,13 @@ export default {
     clearSearchParams() {
       resetObject(this.searchParams);
       this.refresh();
+    },
+    editDialog(id) {
+      getHistoryById(id)
+      .then(r => {
+        this.item = r
+        this.showEditDialog = true;
+      })
     }
   },
   components: { Edit }

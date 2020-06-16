@@ -5,12 +5,21 @@ import request from "@/utils/request.js";
  * @param params
  * @returns {AxiosPromise}
  */
-export function topics(params) {
+export function history(params) {
   return request({
     // closeLoading: true,
     // closeInterceptors: true,
-    url: "/v3/history", //如果是绝对路径就不会在使用配置里的url
+    url: "/v3/history", 
     method: "get",
-    params: params //注意：如果是post请求请使用 data: params
+    params: params
+  });
+}
+
+export function getHistoryById(id) {
+  return request({
+    // closeLoading: true,
+    // closeInterceptors: true,
+    url: `/v3/history/${id}`, 
+    method: "get"
   });
 }
