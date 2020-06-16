@@ -42,6 +42,7 @@
 
 <script>
 //import NProgress from 'nprogress'
+import { setToken } from "@/utils/common";
 export default {
   data() {
     return {
@@ -76,9 +77,10 @@ export default {
           //   username: this.ruleForm2.account,
           //   password: this.ruleForm2.checkPass
           // };
+          setToken("HJDF844GDFG5D8J7FGHFG5");
           this.$router.push({ path: "/home" });
         } else {
-          console.log("error submit!!");
+          // console.log("error submit!!");
           return false;
         }
       });
