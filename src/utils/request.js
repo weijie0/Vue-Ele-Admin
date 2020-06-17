@@ -53,8 +53,8 @@ service.interceptors.response.use(
         });
         return Promise.reject("error");
       }
-      if(res.headers['spacex-api-count']) {
-        res.data.total = res.headers['spacex-api-count']
+      if (res.headers["spacex-api-count"]) {
+        res.data.total = res.headers["spacex-api-count"];
       }
       return res.data;
     }

@@ -54,7 +54,7 @@ export default {
       default: "120px"
     },
     showEditDialog: Boolean,
-    item:Object
+    item: Object
   },
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
         title: "",
         details: "",
         flight_number: "",
-        links: {article:""},
+        links: { article: "" },
         event_date_utc: ""
       }
     };

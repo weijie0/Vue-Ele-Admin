@@ -24,27 +24,40 @@
       <el-table-column prop="flight_number" label="航次"></el-table-column>
       <el-table-column label="访问链接" width="400" show-overflow-tooltip>
         <template slot-scope="scope">
-          <a :href="scope.row.links.article" target="_blank" class="buttonText">{{scope.row.links.article}}</a>
+          <a
+            :href="scope.row.links.article"
+            target="_blank"
+            class="buttonText"
+            >{{ scope.row.links.article }}</a
+          >
         </template>
       </el-table-column>
       <el-table-column prop="event_date_utc" label="时间"></el-table-column>
-      <el-table-column fixed="right"   label="操作">
-        <div  slot-scope="scope">
-          <el-button type="primary" size="small" @click="editDialog(scope.row.id)"
-            ><i class="el-icon-edit"></i><span>
-            查看
-          </span></el-button
+      <el-table-column fixed="right" label="操作">
+        <div slot-scope="scope">
+          <el-button
+            type="primary"
+            size="small"
+            @click="editDialog(scope.row.id)"
+            ><i class="el-icon-edit"></i
+            ><span>
+              查看
+            </span></el-button
           >
         </div>
       </el-table-column>
     </el-table>
-       <Pagination
-         :params="searchParams"
-         :requestFunc="requestFunc"
-         ref="pagination"
-         @returnData="returnData"
-       />
-    <Edit :item="item" :showEditDialog="showEditDialog" @close="showEditDialog = false" />
+    <Pagination
+      :params="searchParams"
+      :requestFunc="requestFunc"
+      ref="pagination"
+      @returnData="returnData"
+    />
+    <Edit
+      :item="item"
+      :showEditDialog="showEditDialog"
+      @close="showEditDialog = false"
+    />
   </div>
 </template>
 
@@ -62,7 +75,7 @@ export default {
       },
       showEditDialog: false,
       tableData: [],
-      item:{}
+      item: {}
     };
   },
   methods: {
@@ -93,11 +106,10 @@ export default {
       this.refresh();
     },
     editDialog(id) {
-      getHistoryById(id)
-      .then(r => {
-        this.item = r
+      getHistoryById(id).then(r => {
+        this.item = r;
         this.showEditDialog = true;
-      })
+      });
     }
   },
   components: { Edit }

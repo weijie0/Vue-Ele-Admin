@@ -14,8 +14,7 @@ export default {
       meta: {
         title: "历史事件"
       },
-      component: resolve =>
-        require(["@/views/sys/history/Index.vue"], resolve)
+      component: resolve => require(["@/views/sys/history/Index.vue"], resolve)
     }
   ]
 };

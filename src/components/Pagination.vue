@@ -75,10 +75,10 @@ export default {
       return { ...this.params, ...this.pageParams };
     },
     convertPageReq(target) {
-        return {
-          limit:target.pageSize,
-          offset:target.pageNum
-        }
+      return {
+        limit: target.pageSize,
+        offset: target.pageNum
+      };
     }
   },
   mounted: function() {

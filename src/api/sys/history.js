@@ -9,7 +9,7 @@ export function history(params) {
   return request({
     // closeLoading: true,
     // closeInterceptors: true,
-    url: "/v3/history", 
+    url: "/v3/history",
     method: "get",
     params: params
   });
@@ -19,7 +19,7 @@ export function getHistoryById(id) {
   return request({
     // closeLoading: true,
     // closeInterceptors: true,
-    url: `/v3/history/${id}`, 
+    url: `/v3/history/${id}`,
     method: "get"
   });
 }
